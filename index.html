@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>مركز المتابعة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div id="toastZone"></div>
+
+<div class="layout">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 28 28" fill="none" width="20" height="20">
+          <path d="M14 2L3 8.5V19.5L14 26L25 19.5V8.5L14 2Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M14 2V26M3 8.5L25 8.5M3 19.5L25 19.5" stroke="white" stroke-width="1.2" opacity=".5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sb-logo-title">مركز المتابعة</div>
+        <div class="sb-logo-sub" id="sbDate">—</div>
+      </div>
+    </div>
+
+    <div class="sb-live">
+      <span class="sb-live-dot"></span>
+      <span>بيانات مباشرة</span>
+    </div>
+
+    <nav id="sbNav" class="sb-nav"></nav>
+
+    <div class="sb-bottom">
+      <button id="refreshBtn" class="sb-refresh">
+        <svg id="refreshIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+          <path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16"/><path d="M8 16H3v5"/>
+        </svg>
+        تحديث
+      </button>
+      <div class="sb-updated">
+        <span>آخر تحديث</span>
+        <strong id="lastUpd">—</strong>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+
+    <!-- Header -->
+    <header class="page-hd" id="pageHd">
+      <div class="page-hd-left">
+        <div class="page-hd-tag" id="pageTag">—</div>
+        <h1 id="pageTitle">—</h1>
+        <p id="pageSub" class="page-hd-sub">—</p>
+      </div>
+      <div class="stat-chips" id="statChips"></div>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="bar">
+      <input id="searchInput" type="text" class="bar-input" placeholder="ابحث..." autocomplete="off"/>
+      <div id="dynFiltBox" class="bar-sel-wrap hidden">
+        <select id="dynFilt" class="bar-sel"><option value="">الكل</option></select>
+      </div>
+      <div id="winFiltBox" class="bar-sel-wrap hidden">
+        <select id="winFilt" class="bar-sel">
+          <option value="7">٧ أيام</option>
+          <option value="14" selected>١٤ يوم</option>
+          <option value="30">٣٠ يوم</option>
+          <option value="9999">الكل</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div id="pageContent"></div>
+
+  </main>
+</div>
+
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
