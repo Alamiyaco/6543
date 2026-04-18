@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة المتابعة والمناسبات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        لوحة تفاعلية موحدة &nbsp;•&nbsp; بيانات مباشرة من Google Sheets
+      </p>
+      <h1 id="pageTitle">متابعة تقييمات الموظفين</h1>
+      <p class="subtitle" id="pageSubtitle">جارٍ التحميل...</p>
+    </div>
+    <div class="hero-actions">
+      <div class="date-box">
+        <span>تاريخ اليوم</span>
+        <strong id="todayDateText">-</strong>
+      </div>
+      <div class="meta-actions">
+        <div class="last-updated-box">
+          <span>آخر تحديث</span>
+          <strong id="lastUpdatedText">-</strong>
+        </div>
+        <button id="refreshBtn" class="refresh-btn" title="تحديث البيانات من الشيت">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M8 16H3v5"/>
+          </svg>
+          <span>تحديث</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabsNav"></nav>
+
+  <section class="controls" id="controlsSection">
+    <div class="search-box">
+      <label for="searchInput">بحث</label>
+      <div class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="searchInput" type="text" placeholder="ابحث بالاسم أو القسم أو المناسبة..." />
+      </div>
+    </div>
+
+    <div class="filter-box" id="dynamicFilterBox">
+      <label for="dynamicFilter">فلتر</label>
+      <select id="dynamicFilter">
+        <option value="">الكل</option>
+      </select>
+    </div>
+
+    <div class="filter-box" id="windowFilterBox">
+      <label for="windowFilter">الفترة القادمة</label>
+      <select id="windowFilter">
+        <option value="7">7 أيام</option>
+        <option value="14" selected>14 يوم</option>
+        <option value="30">30 يوم</option>
+        <option value="9999">كل القادم</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="stats" id="statsSection"></section>
+
+  <main id="pageContent"></main>
+
+  <!-- Templates -->
+  <template id="evaluationCardTemplate">
+    <article class="employee-card">
+      <div class="employee-main">
+        <div class="employee-info">
+          <h3 class="employee-name"></h3>
+          <p class="employee-meta"></p>
+        </div>
+        <span class="badge eval-type"></span>
+      </div>
+      <div class="employee-footer">
+        <div class="date-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span class="date-pill-text"></span>
+        </div>
+        <div class="days-left"></div>
+      </div>
+    </article>
+  </template>
+
+  <template id="eventCardTemplate">
+    <article class="event-card">
+      <div class="event-top">
+        <div class="event-info">
+          <h3 class="event-title"></h3>
+          <p class="event-meta"></p>
+        </div>
+        <span class="badge event-badge"></span>
+      </div>
+      <div class="event-body">
+        <p class="event-note"></p>
+      </div>
+      <div class="event-footer">
+        <div class="date-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span class="event-date"></span>
+        </div>
+        <div class="days-left event-days"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="config.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
